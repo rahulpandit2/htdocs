@@ -1,0 +1,47 @@
+# Ignore Composer dependencies
+/vendor/
+
+# Ignore .env files (contains sensitive data like API keys, DB credentials)
+.env
+.env.local
+.env.*.local
+
+# Ignore IDE/editor-specific files
+/.idea/
+/.vscode/
+/*.sublime-workspace
+/*.sublime-project
+/.trae
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
+
+# Ignore PHP session files
+*.sess
+
+# Ignore system-specific files
+*.swp
+*.bak
+
+# Ignore uploads and user files
+/uploads/
+/public/uploads/
+
+# Ignore cache and temporary files
+/cache/
+/tmp/
+/logs/
+
+# Ignore compiled or built files
+*.phar
+*.tar
+*.zip
+*.rar
+
+# Ignore configuration or temporary files
+*.bak
+*.tmp
