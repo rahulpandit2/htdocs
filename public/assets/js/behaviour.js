@@ -15,19 +15,16 @@ const lazyImages = document.querySelectorAll('img[data-src]');
 const lazyLoad = (target) => {
     // Create a new Intersection Observer instance
     const io = new IntersectionObserver((entries, observer) => {
-        // Process each entry (in this case, only one - our target image)
+        // Process each entry
         entries.forEach(entry => {
-            // Check if the image is now visible (or about to be visible)
+            // Check if the image is now visible
             if (entry.isIntersecting) {
                 const img = entry.target;
-
                 // Replace the src with the actual image URL from data-src
                 img.src = img.dataset.src;
-
                 // Add fade-in class for a smooth visual transition
                 img.classList.remove('lazy-load');
                 img.classList.add('fade-in');
-
                 // Stop observing this image since it's already loaded
                 observer.unobserve(img);
             }
@@ -37,29 +34,19 @@ const lazyLoad = (target) => {
         rootMargin: '200px', // Load images 200px before they enter the viewport
         threshold: 0.1      // Trigger when just 1% of the image becomes visible
     });
-
     // Start observing the target image
     io.observe(target);
 };
-
 // Apply the lazy loading function to each image
 lazyImages.forEach(lazyLoad);
 
 /* 
 Example usage in HTML:
 
-<img loading="lazy" 
-     src="images/skeleton.png"
-     alt="Image"
-     data-src="real-image.jpg"
-     class="lazy-load">
-
-CSS suggestion:
-.fade-in {
-    opacity: 1;
-    transition: opacity 0.3s ease-in;
-}
-.lazy-load {
-    opacity: 0;
-}
+<img loading="lazy"
+    src="assets/images/skeleton.png"
+    data-src="assets/images/_logo.png"
+    class="lazy-load"
+    width="300px"
+    alt="Image">
 */
