@@ -1,0 +1,31 @@
+# Enable the rewrite engine
+RewriteEngine On
+
+# Set your base directory if site is in a subdirectory (adjust if needed)
+# RewriteBase /
+
+# First, handle the PHP extension removal
+# Skip rewrite if it's an existing directory
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Skip rewrite if it's an existing file
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Only rewrite if the requested file with .php extension exists
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [NC,L]
+
+# Now handle the 404 error - this will execute if file doesn't exist with or without .php
+# Don't handle existing files or directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Don't redirect the 404 page itself to avoid loops
+RewriteCond %{REQUEST_URI} !^/public/404$
+
+# Redirect to your custom 404 page (without .php extension in URL)
+RewriteRule ^(.*)$ /public/404 [R=302,L]
+
+# Alternatively, use ErrorDocument for a simpler setup
+# This doesn't change the URL but renders the 404 content
+# ErrorDocument 404 /config/404.php
