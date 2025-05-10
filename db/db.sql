@@ -24,8 +24,21 @@ CREATE TABLE IF NOT EXISTS `users` (
     `profile_picture` VARCHAR(255) DEFAULT 'default.png',
     `role` ENUM('admin', 'user') NOT NULL DEFAULT 'user',
     `status` ENUM('active', 'inactive') NOT NULL DEFAULT 'active',
+    `current_session_id` VARCHAR(255) NULL DEFAULT NULL,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- @ Create Table: sessions
+CREATE TABLE IF NOT EXISTS `sessions` (
+    `id` VARCHAR(255) PRIMARY KEY,
+    `user_id` INT(11) UNSIGNED NOT NULL,
+    `token` VARCHAR(255) NOT NULL,
+    `ip_address` VARCHAR(45) NOT NULL,
+    `user_agent` TEXT NOT NULL,
+    `last_login` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
 );
 
 -- @ Create Table: post_category
