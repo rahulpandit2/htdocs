@@ -1,0 +1,9 @@
+/* both of the following classes are required for the lazy loading function of images */
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.3s ease-in;
+}
+
+.lazy-load {
+    opacity: 0;
+}
