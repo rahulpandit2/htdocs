@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
     `title` VARCHAR(255) NOT NULL,
     `slug` VARCHAR(255) NOT NULL UNIQUE,
     `cover_image` VARCHAR(255) NOT NULL,
+    `tags` VARCHAR(255) NOT NULL,
     `content` LONGTEXT NOT NULL,
     `category_id` INT(11) UNSIGNED NOT NULL,
     `user_id` INT(11) UNSIGNED DEFAULT NULL,
